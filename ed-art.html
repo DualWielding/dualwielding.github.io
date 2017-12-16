@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Ed Art</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Bungee|Source+Sans+Pro|Spectral+SC" rel="stylesheet">
+  </head>
+
+  <body class=ed-art-magnificent-page>
+    <header class=top-header>
+      <h1 class=noice-main-title>Ed Art</h1>
+      <p class=beautiful-main-subtitle>Games. Deep.</p>
+    </header>
+
+    <main>
+      <section class=wow-buy-stuff>
+        <h3 class="gorgeous-section-title">Buy coins</h3>
+        
+        <article class=buy-things-wrapper>
+
+          <section class="stunning-sub-section buy-currency-box">
+            <img src="assets/img/Ed-Art-Insane-Coin.png">
+            <p class="such-price" data-price=14.99>10 coins: 14.99$</p>
+          </section>
+          <section class="stunning-sub-section buy-currency-box">
+            <img src="assets/img/Ed-Art-Insane-Coin.png">
+            <p class="such-price" data-price=37.39>25 coins: 37.39$</p>
+          </section>
+          <section class="stunning-sub-section buy-currency-box">
+            <img src="assets/img/Ed-Art-Insane-Coin.png">
+            <p class="such-price" data-price=148.99>100 coins: 148.99$</p>
+          </section>
+
+        </article>
+
+        <footer class=i-want-it-now>
+          <a href="#pay-pay-pay-pay">Get it now!</a>
+        </footer>
+
+      </section>
+      
+      <section class=wow-buy-stuff>
+        <h3 class="gorgeous-section-title">Buy hats</h3>
+
+        <article class="buy-things-wrapper">
+          
+          <section class="stunning-sub-section buy-hat-box">
+            <img src="assets/img/Very-Handsome-Hat-Black.png">
+            <p class="such-price" data-price=45>Reaper's Hat 45$</p>
+          </section>
+          <section class="stunning-sub-section buy-hat-box">
+            <img src="assets/img/Very-Handsome-Hat-Blue.png">
+            <p class="such-price" data-price=26>Rainy Mood Hat 26$</p>
+          </section>
+          <section class="stunning-sub-section buy-hat-box">
+            <img src="assets/img/Very-Handsome-Hat-Orange.png">
+            <p class="such-price" data-price=37>Halloween Hat 37$</p>
+          </section>
+
+        </article>
+
+        <article class="buy-things-wrapper">
+
+          <section class="stunning-sub-section buy-hat-box">
+            <img src="assets/img/Very-Handsome-Hat-Cyan.png">
+            <p class="such-price" data-price=26>South Sky Hat 26$</p>
+          </section>
+          <section class="stunning-sub-section buy-hat-box">
+            <img src="assets/img/Very-Handsome-Hat-Special.png">
+            <p class="such-price" data-price=75>Ed Art Special Hat 75$</p>
+          </section>
+          <section class="stunning-sub-section buy-hat-box">
+            <img src="assets/img/Very-Handsome-Hat-Yellow.png">
+            <p class="such-price" data-price=60>Sunshine Hat 60$</p>
+          </section>
+
+        </article>
+
+        <footer class=i-want-it-now>
+          <a href="#pay-pay-pay-pay">Get it now!</a>
+        </footer>
+      </section>
+      
+      <section>
+        <h3 class=gorgeous-section-title>Give money for episode 2</h3>
+        
+        <form class=cool-form method=with-love>
+          <fieldset>
+            <label>Amount</label>
+            <input class="we-want-that tasty-donation" 
+                   type=number 
+                   placeholder="Thank you from the bottom of our heart <3" 
+                   min=25 
+                   step=10
+                   list=defaultNumbers>
+
+            <datalist id=defaultNumbers>
+              <option value="50">
+              <option value="85">
+              <option value="125">
+              <option value="200">
+              <option value="500">
+              <option value="1200.99">
+            </datalist>
+          </fieldset>
+        </form>
+
+        <p class=thank-you>THANK YOU!</p>
+      </section>
+
+      <section>
+        <h3 class="gorgeous-section-title">Soon you'll have all this !</h3>
+        <p class=total-wrapper>For <span class=such-low>only</span> <span class=small-total-price>0$</span></p>
+        <form class=cool-form method=in-the-ass>
+          <fieldset>
+            <label>Credit card</label>
+            <input class=we-want-that type=text placeholder="Full name">
+            <input class=we-want-that type=text placeholder="Card number. Don't worry, it's perfectly safe.">
+            <input class=we-want-that type=text placeholder="Code">
+            <input id="pay-pay-pay-pay" class=pay-pay-pay-pay type=submit value=Submit>
+          </fieldset>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+    </footer>
+  </body>
+</html>
+
+<script>
+  var total = 0
+
+  document.querySelector('.tasty-donation').onclick = function(event) {
+    event.preventDefault();
+    event.target.stepUp(1);
+    updateSmallTotal();
+
+    document.querySelector('.thank-you').style.display = 'block';
+  };
+
+  function updateSmallTotal() {
+    var totalNode = document.querySelector('.small-total-price');
+
+    var tastyDonation = parseFloat(document.querySelector(".tasty-donation").value);
+    totalNode.textContent = `${total + tastyDonation}$`
+  }
+
+  var incredibleBoxes = document.querySelectorAll('.buy-currency-box');
+
+  incredibleBoxes.forEach(function(ib){
+    ib.onclick = function(event) {
+      toggleAwesomeWhiteLayer(event.target);
+    }
+  });
+
+  function toggleAwesomeWhiteLayer(element) {
+
+
+    var wrapper
+
+    if(element.classList.contains('buy-currency-box')) {
+      wrapper = element;
+    } else {
+      wrapper = element.parentNode;
+    }
+
+    price = getTinyCost(wrapper);
+
+    wrapper.classList.toggle('selected')
+      
+    incredibleBoxes.forEach(function(ib){
+      if (ib.classList.contains('selected') && ib != wrapper) {
+        ib.classList.remove('selected')
+        total -= price;
+      }
+    });
+
+
+    if (wrapper.classList.contains('selected')) {
+      total += price;
+    }  else {
+      total -= price;
+    }
+
+    updateSmallTotal();
+
+  }
+
+  var unbelievableBoxes = document.querySelectorAll('.buy-hat-box');
+
+  unbelievableBoxes.forEach(function(ub) {
+    ub.onclick = function(event) {
+      toggleMagnificentWhiteLayer(event.target);
+    }
+  });
+
+  function toggleMagnificentWhiteLayer(element) {
+
+    var wrapper
+    var price
+
+    if(element.classList.contains('buy-hat-box')) {
+      wrapper = element;
+    } else {
+      wrapper = element.parentNode;
+    }
+
+    price = getTinyCost(wrapper);
+
+    wrapper.classList.toggle('selected')
+
+    if (wrapper.classList.contains('selected')) {
+      total += price;
+    } else {
+      total -= price;
+    }
+
+    updateSmallTotal();
+    
+  }
+
+  function getTinyCost(element) {
+    return parseFloat(element.querySelector('.such-price').dataset.price)
+  }
+
+  document.querySelector('.pay-pay-pay-pay').disabled = true;
+
+</script>
